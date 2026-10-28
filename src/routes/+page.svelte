@@ -232,8 +232,7 @@
 	}
 
 	.ticker-track {
-		display: inline-flex;
-		gap: 1.5rem;
+		display: flex;
 		width: max-content;
 	}
 
