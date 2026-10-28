@@ -48,7 +48,7 @@
 	<header>
 		<p class="prompt">~ $ whoami</p>
 		<h1 aria-label="Junayeed">
-			{#each name as letter, i (i)}<span style="--i: {i}">{letter}</span>{/each}<span
+			{#each name as letter, i (i)}<span aria-hidden="true" style="--i: {i}">{letter}</span>{/each}<span
 				class="cursor"
 				aria-hidden="true"
 			></span>
