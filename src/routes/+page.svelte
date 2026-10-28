@@ -1,11 +1,77 @@
+<script>
+	const name = 'Junayeed'.split('');
+
+	const stats = [
+		'3 nodes',
+		'56 services',
+		'29 domains',
+		'~3,100 signed commits',
+		'400k+ installs',
+		'every commit SSH-signed',
+		'boring tech, audited hard'
+	];
+
+	const beliefs = [
+		'Own the metal.',
+		'The source of truth is a git repo.',
+		"If it isn't rendered, reviewed and reproducible, it isn't done.",
+		'Boring technology, audited hard, beats fashionable technology trusted blindly.'
+	];
+
+	const stack = [
+		'Linux',
+		'Salt',
+		'GitLab CI',
+		'Forgejo',
+		'Git',
+		'Podman',
+		'Caddy',
+		'Ruby',
+		'PostgreSQL'
+	];
+
+	const links = [
+		{ label: 'github', handle: '/fakeid30', href: 'https://github.com/fakeid30' },
+		{ label: 'linkedin', handle: '/junayeed-ahnaf', href: 'https://www.linkedin.com/in/junayeed-ahnaf' },
+		{ label: 'mail', handle: '@protonmail', href: 'mailto:junayeed@protonmail.com' }
+	];
+</script>
+
+<svelte:head>
+	<title>Junayeed</title>
+	<meta name="description" content="Junayeed: infrastructure, release planning, and plain-text systems." />
+</svelte:head>
+
+<div class="glow" aria-hidden="true"></div>
+
 <main class="wrap">
 	<header>
-		<h1>Junayeed</h1>
-		<p>Dhaka, Bangladesh (UTC+6). I run infrastructure and plan software releases.</p>
+		<p class="prompt">~ $ whoami</p>
+		<h1 aria-label="Junayeed">
+			{#each name as letter, i (i)}<span style="--i: {i}">{letter}</span>{/each}<span
+				class="cursor"
+				aria-hidden="true"
+			></span>
+		</h1>
+		<p class="sub">
+			Dhaka, Bangladesh (UTC+6). I run infrastructure and plan software releases.
+		</p>
 	</header>
+</main>
 
+<div class="ticker" aria-hidden="true">
+	<div class="ticker-track">
+		{#each [0, 1] as copy (copy)}
+			{#each stats as stat (copy + stat)}
+				<span class="tick">{stat}<i>✦</i></span>
+			{/each}
+		{/each}
+	</div>
+</div>
+
+<main class="wrap body">
 	<section>
-		<h2>Now</h2>
+		<h2><span class="dollar">$</span> cat now.txt</h2>
 		<p>
 			Project Manager at <a href="https://happymonsters.co" rel="noopener">HappyMonster</a> since
 			January 2024. I lead Dev, Marketing, Content and Design for
@@ -19,7 +85,7 @@
 	</section>
 
 	<section>
-		<h2>On the side</h2>
+		<h2><span class="dollar">$</span> ls ~/fleet</h2>
 		<p>
 			I run a private fleet of three machines: claw, cyclops and eden. They run AlmaLinux with
 			rootless Podman, Caddy and Salt. Together they host 56 services behind 29 domains. These
@@ -38,53 +104,63 @@
 	</section>
 
 	<section>
-		<h2>Beliefs</h2>
-		<ul class="beliefs">
-			<li>Own the metal.</li>
-			<li>The source of truth is a git repo.</li>
-			<li>If it isn't rendered, reviewed and reproducible, it isn't done.</li>
-			<li>Boring technology, audited hard, beats fashionable technology trusted blindly.</li>
-		</ul>
+		<h2><span class="dollar">$</span> cat beliefs.md</h2>
+		<ol class="beliefs">
+			{#each beliefs as belief, i (i)}
+				<li>
+					<span class="num">{String(i + 1).padStart(2, '0')}</span>
+					<span class="belief">{belief}</span>
+				</li>
+			{/each}
+		</ol>
 	</section>
 
 	<section>
-		<h2>Stack</h2>
+		<h2><span class="dollar">$</span> stack --list</h2>
 		<div class="stack">
-			<span>Linux</span>
-			<span>Salt</span>
-			<span>GitLab CI</span>
-			<span>Forgejo</span>
-			<span>Git</span>
-			<span>Podman</span>
-			<span>Caddy</span>
-			<span>Ruby</span>
-			<span>PostgreSQL</span>
+			{#each stack as tool (tool)}
+				<span>{tool}</span>
+			{/each}
 		</div>
 	</section>
 
 	<section>
-		<h2>Elsewhere</h2>
+		<h2><span class="dollar">$</span> ping elsewhere</h2>
 		<ul class="links">
-			<li>
-				<a href="https://github.com/fakeid30" rel="noopener">github<span>/fakeid30</span></a>
-			</li>
-			<li>
-				<a href="https://www.linkedin.com/in/junayeed-ahnaf" rel="noopener"
-					>linkedin<span>/junayeed-ahnaf</span></a
-				>
-			</li>
-			<li>
-				<a href="mailto:junayeed@protonmail.com">mail<span>@protonmail</span></a>
-			</li>
+			{#each links as link (link.label)}
+				<li>
+					<a href={link.href} rel="noopener">
+						<span class="label">{link.label}</span>
+						<span class="handle">{link.handle}</span>
+						<span class="arrow" aria-hidden="true">→</span>
+					</a>
+				</li>
+			{/each}
 		</ul>
 	</section>
 
 	<footer>
-		<p>Built with SvelteKit, compiled to static HTML. No runtime.</p>
+		<p>
+			Built with SvelteKit + Bun. Compiled to static HTML.
+			<a href="https://github.com/fakeid30/fakeid30.github.io" rel="noopener">view source</a>
+		</p>
 	</footer>
 </main>
 
 <style>
+	.glow {
+		position: absolute;
+		inset: 0 0 auto 0;
+		height: 34rem;
+		background: radial-gradient(
+			ellipse 60% 55% at 50% 0%,
+			var(--accent-dim),
+			transparent 70%
+		);
+		pointer-events: none;
+		z-index: -1;
+	}
+
 	.wrap {
 		max-width: 44rem;
 		margin: 0 auto;
@@ -92,36 +168,99 @@
 	}
 
 	header {
-		padding: 7rem 0 3rem;
+		padding: 6rem 0 3rem;
 	}
 
-	header h1 {
-		font-size: clamp(2.4rem, 7vw, 3.6rem);
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		line-height: 1.1;
+	.prompt {
+		font-family: var(--mono);
+		font-size: 0.85rem;
+		color: var(--dim);
+		margin-bottom: 1rem;
 	}
 
-	header p {
-		margin-top: 1.2rem;
+	h1 {
+		font-size: clamp(3.6rem, 13vw, 8.5rem);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 0.95;
+		display: flex;
+		align-items: baseline;
+	}
+
+	h1 span {
+		display: inline-block;
+		transition:
+			color 0.15s ease,
+			transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+	}
+
+	h1 span:hover {
+		color: var(--accent);
+		transform: translateY(-0.08em) skewX(-6deg);
+	}
+
+	.cursor {
+		width: 0.14em;
+		height: 0.82em;
+		background: var(--accent);
+		margin-left: 0.06em;
+		align-self: center;
+	}
+
+	.sub {
+		margin-top: 1.4rem;
 		color: var(--dim);
 		font-size: 1.25rem;
 		max-width: 30rem;
 	}
 
+	.ticker {
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
+		overflow: hidden;
+		white-space: nowrap;
+		padding: 0.65rem 0;
+	}
+
+	.ticker-track {
+		display: inline-flex;
+		gap: 1.5rem;
+		width: max-content;
+	}
+
+	.tick {
+		font-family: var(--mono);
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: var(--dim);
+	}
+
+	.tick i {
+		font-style: normal;
+		color: var(--accent);
+		margin-left: 1.5rem;
+	}
+
+	.body {
+		padding-bottom: 1rem;
+	}
+
 	section {
 		padding: 2.5rem 0;
-		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
 	}
 
 	h2 {
 		font-family: var(--mono);
-		font-size: 0.78rem;
+		font-size: 0.85rem;
 		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: 0.18em;
-		color: var(--dim);
+		color: var(--fg);
 		margin-bottom: 1.4rem;
+	}
+
+	.dollar {
+		color: var(--accent);
 	}
 
 	section p {
@@ -132,14 +271,15 @@
 		margin-top: 0.9rem;
 	}
 
-	section a {
-		color: var(--fg);
-		text-decoration-color: var(--line);
+	section p a {
+		color: var(--accent);
+		text-decoration-color: transparent;
 		text-underline-offset: 3px;
+		transition: text-decoration-color 0.2s ease;
 	}
 
-	section a:hover {
-		color: var(--accent);
+	section p a:hover {
+		text-decoration-color: var(--accent);
 	}
 
 	.beliefs {
@@ -148,15 +288,31 @@
 
 	.beliefs li {
 		display: flex;
-		gap: 1rem;
-		padding: 0.55rem 0;
+		gap: 1.2rem;
+		padding: 0.8rem 0;
+		font-size: 1.15rem;
+		line-height: 1.5;
+		border-bottom: 1px dashed transparent;
+		transition:
+			padding-left 0.25s ease,
+			color 0.25s ease;
 	}
 
-	.beliefs li::before {
-		content: '→';
+	.beliefs li:hover {
+		padding-left: 0.6rem;
 		color: var(--accent);
+	}
+
+	.num {
 		font-family: var(--mono);
+		font-size: 0.8rem;
+		color: var(--accent);
+		padding-top: 0.35rem;
 		flex-shrink: 0;
+	}
+
+	.belief {
+		max-width: 34rem;
 	}
 
 	.stack {
@@ -168,16 +324,29 @@
 	.stack span {
 		font-family: var(--mono);
 		font-size: 0.85rem;
-		padding: 0.32rem 0.85rem;
+		padding: 0.35rem 0.9rem;
 		border: 1px solid var(--line);
 		border-radius: 999px;
 		color: var(--dim);
+		cursor: default;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease,
+			border-color 0.15s ease,
+			transform 0.15s ease;
+	}
+
+	.stack span:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--bg);
+		transform: rotate(-2deg) scale(1.05);
 	}
 
 	.links {
 		list-style: none;
 		display: grid;
-		gap: 0.7rem;
+		gap: 0.4rem;
 	}
 
 	.links a {
@@ -188,40 +357,77 @@
 		text-decoration: none;
 		width: fit-content;
 		font-family: var(--mono);
-		font-size: 0.95rem;
+		font-size: 1.05rem;
+		padding: 0.3rem 0;
 	}
 
-	.links a span {
+	.links .handle {
 		color: var(--dim);
 	}
 
-	.links a:hover {
+	.links .arrow {
+		color: var(--accent);
+		opacity: 0;
+		transform: translateX(-0.5rem);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.links a:hover .arrow {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	.links a:hover .label {
 		color: var(--accent);
 	}
 
 	footer {
-		padding: 3rem 0 4rem;
-		border-top: 1px solid var(--line);
+		padding: 2.5rem 0 4rem;
 		color: var(--dim);
 		font-size: 0.85rem;
 		font-family: var(--mono);
 	}
 
+	footer a {
+		color: var(--dim);
+		text-underline-offset: 3px;
+	}
+
+	footer a:hover {
+		color: var(--accent);
+	}
+
 	@media (prefers-reduced-motion: no-preference) {
-		header h1,
-		header p {
-			animation: rise 0.7s ease both;
+		.cursor {
+			animation: blink 1.1s steps(1) infinite;
 		}
 
-		header p {
-			animation-delay: 0.12s;
+		.ticker-track {
+			animation: scroll 28s linear infinite;
 		}
 
-		@keyframes rise {
-			from {
+		.ticker:hover .ticker-track {
+			animation-play-state: paused;
+		}
+
+		@keyframes blink {
+			50% {
 				opacity: 0;
-				transform: translateY(10px);
 			}
+		}
+
+		@keyframes scroll {
+			to {
+				transform: translateX(-50%);
+			}
+		}
+	}
+
+	@media (max-width: 640px) {
+		header {
+			padding: 4rem 0 2.5rem;
 		}
 	}
 </style>
