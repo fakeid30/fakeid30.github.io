@@ -1,4 +1,4 @@
-# junayeed.dev
+# fakeid30.github.io
 
 Single-page personal site. SvelteKit compiled to static HTML — no runtime.
 
