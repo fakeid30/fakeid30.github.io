@@ -19,15 +19,15 @@
 	];
 
 	const stack = [
-		'Linux',
-		'Salt',
-		'GitLab CI',
-		'Forgejo',
-		'Git',
-		'Podman',
-		'Caddy',
-		'Ruby',
-		'PostgreSQL'
+		{ name: 'Linux', href: 'https://kernel.org' },
+		{ name: 'Salt', href: 'https://saltproject.io' },
+		{ name: 'GitLab CI', href: 'https://docs.gitlab.com/ee/ci/' },
+		{ name: 'Forgejo', href: 'https://forgejo.org' },
+		{ name: 'Git', href: 'https://git-scm.com' },
+		{ name: 'Podman', href: 'https://podman.io' },
+		{ name: 'Caddy', href: 'https://caddyserver.com' },
+		{ name: 'Ruby', href: 'https://www.ruby-lang.org' },
+		{ name: 'PostgreSQL', href: 'https://www.postgresql.org' }
 	];
 
 	const links = [
@@ -118,8 +118,8 @@
 	<section>
 		<h2><span class="dollar">$</span> stack --list</h2>
 		<div class="stack">
-			{#each stack as tool (tool)}
-				<span>{tool}</span>
+			{#each stack as tool (tool.name)}
+				<a href={tool.href} rel="noopener">{tool.name}</a>
 			{/each}
 		</div>
 	</section>
@@ -321,14 +321,15 @@
 		gap: 0.55rem;
 	}
 
-	.stack span {
+	.stack a {
 		font-family: var(--mono);
 		font-size: 0.85rem;
 		padding: 0.35rem 0.9rem;
 		border: 1px solid var(--line);
 		border-radius: 999px;
 		color: var(--dim);
-		cursor: default;
+		text-decoration: none;
+		cursor: pointer;
 		transition:
 			background 0.15s ease,
 			color 0.15s ease,
@@ -336,7 +337,8 @@
 			transform 0.15s ease;
 	}
 
-	.stack span:hover {
+	.stack a:hover,
+	.stack a:focus-visible {
 		background: var(--accent);
 		border-color: var(--accent);
 		color: var(--bg);
