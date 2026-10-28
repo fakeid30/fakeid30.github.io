@@ -73,7 +73,7 @@
 	<section>
 		<h2><span class="dollar">$</span> cat now.txt</h2>
 		<p>
-			Project Manager at <a href="https://happymonsters.co" rel="noopener">HappyMonster</a> since
+			Project Manager at <a href="https://happymonster.dev" rel="noopener">HappyMonster</a> since
 			January 2024. I lead Dev, Marketing, Content and Design for
 			<a href="https://happyaddons.com" rel="noopener">HappyAddons</a>, a WordPress plugin on
 			400k+ sites. I own the roadmap, the releases and delivery.
