@@ -31,9 +31,14 @@
 	];
 
 	const links = [
-		{ label: 'github', handle: '/fakeid30', href: 'https://github.com/fakeid30' },
-		{ label: 'linkedin', handle: '/junayeed-ahnaf', href: 'https://www.linkedin.com/in/junayeed-ahnaf' },
-		{ label: 'mail', handle: '@protonmail', href: 'mailto:junayeed@protonmail.com' }
+		{ label: 'github', handle: '/fakeid30', href: 'https://github.com/fakeid30', external: true },
+		{
+			label: 'linkedin',
+			handle: '/junayeed-ahnaf',
+			href: 'https://www.linkedin.com/in/junayeed-ahnaf',
+			external: true
+		},
+		{ label: 'mail', handle: '@protonmail', href: 'mailto:junayeed@protonmail.com', external: false }
 	];
 </script>
 
@@ -73,9 +78,9 @@
 	<section>
 		<h2><span class="dollar">$</span> cat now.txt</h2>
 		<p>
-			Project Manager at <a href="https://happymonster.dev" rel="noopener">HappyMonster</a> since
+			Project Manager at <a href="https://happymonster.dev" target="_blank" rel="noopener noreferrer">HappyMonster</a> since
 			January 2024. I lead Dev, Marketing, Content and Design for
-			<a href="https://happyaddons.com" rel="noopener">HappyAddons</a>, a WordPress plugin on
+			<a href="https://happyaddons.com" target="_blank" rel="noopener noreferrer">HappyAddons</a>, a WordPress plugin on
 			400k+ sites. I own the roadmap, the releases and delivery.
 		</p>
 		<p>
@@ -119,7 +124,7 @@
 		<h2><span class="dollar">$</span> stack --list</h2>
 		<div class="stack">
 			{#each stack as tool (tool.name)}
-				<a href={tool.href} rel="noopener">{tool.name}</a>
+				<a href={tool.href} target="_blank" rel="noopener noreferrer">{tool.name}</a>
 			{/each}
 		</div>
 	</section>
@@ -129,7 +134,11 @@
 		<ul class="links">
 			{#each links as link (link.label)}
 				<li>
-					<a href={link.href} rel="noopener">
+					<a
+						href={link.href}
+						target={link.external ? '_blank' : undefined}
+						rel={link.external ? 'noopener noreferrer' : undefined}
+					>
 						<span class="label">{link.label}</span>
 						<span class="handle">{link.handle}</span>
 						<span class="arrow" aria-hidden="true">→</span>
@@ -142,7 +151,7 @@
 	<footer>
 		<p>
 			Built with SvelteKit + Bun. Compiled to static HTML.
-			<a href="https://github.com/fakeid30/fakeid30.github.io" rel="noopener">view source</a>
+			<a href="https://github.com/fakeid30/fakeid30.github.io" target="_blank" rel="noopener noreferrer">view source</a>
 		</p>
 	</footer>
 </main>
