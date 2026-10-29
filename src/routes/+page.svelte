@@ -66,7 +66,7 @@
 
 <div class="ticker" aria-hidden="true">
 	<div class="ticker-track">
-		{#each [0, 1] as copy (copy)}
+		{#each { length: 6 } as _, copy (copy)}
 			{#each stats as stat (copy + stat)}
 				<span class="tick">{stat}<i>✦</i></span>
 			{/each}
