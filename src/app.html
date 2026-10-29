@@ -2,6 +2,18 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<script>
+			(function () {
+				try {
+					var t = localStorage.getItem('theme');
+					if (t !== 'light' && t !== 'dark')
+						t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+					document.documentElement.dataset.theme = t;
+				} catch (e) {
+					document.documentElement.dataset.theme = 'dark';
+				}
+			})();
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Junayeed</title>
 		<meta name="description" content="Junayeed: infrastructure, release planning, and plain-text systems." />
