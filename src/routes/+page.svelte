@@ -415,7 +415,7 @@
 		}
 
 		.ticker-track {
-			animation: scroll 28s linear infinite;
+			animation: scroll 84s linear infinite;
 		}
 
 		.ticker:hover .ticker-track {
